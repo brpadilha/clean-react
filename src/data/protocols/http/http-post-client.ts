@@ -1,3 +1,5 @@
+// Cria as interfaces para o HttpPostClient
+
 export type HttpPostParams = {
   url: string
   body?: object
