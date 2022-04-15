@@ -1,5 +1,5 @@
 
-import { HttpResponse } from './http-response'
+import { HttpResponse } from '.'
 
 // Cria as interfaces para o HttpPostClient
 // it will make the request on the backend
