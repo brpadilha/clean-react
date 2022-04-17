@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Spinner } from '..'
 import styles from './form-status-styles.scss'
+import Context from '@/presentation/context/form/form-context'
 
-type Props = {
-  errorMessage: string
-}
+const FormStatus: React.FC = () => {
+  const { isLoading, errorMessage } = useContext(Context)
 
-const FormStatus: React.FC<Props> = ({ errorMessage }: Props) => {
   return (
-    <div className={styles.errorWrap}>
-      <Spinner className={styles.spinner} />
-      <span className={styles.error}>{errorMessage}</span>
+    <div data-testid="error-wrap" className={styles.errorWrap}>
+      {isLoading && <Spinner className={styles.spinner} />}
+      {errorMessage && <span className={styles.error}>{errorMessage}</span>}
     </div>
   )
 }
