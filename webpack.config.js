@@ -18,10 +18,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts(x)?$/,
+        test: /\.ts(x?)$/,
         loader: 'ts-loader',
         exclude: /node_modules/
-      }, {
+      },
+      {
         test: /\.scss$/,
         use: [
           {
@@ -42,16 +43,12 @@ module.exports = {
   },
   devServer: {
     contentBase: './public',
-    // generate the bundle and up the server
     writeToDisk: true,
-    // will understand other routes
     historyApiFallback: true
   },
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM'
   },
-  plugins: [
-    new CleanWebpackPlugin()
-  ]
+  plugins: [new CleanWebpackPlugin()]
 }
