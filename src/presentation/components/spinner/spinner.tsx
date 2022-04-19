@@ -6,8 +6,12 @@ type Props = React.HTMLAttributes<HTMLElement>;
 
 const Spinner: React.FC<Props> = (props: Props) => {
   return (
-    // eslint-disable-next-line react/prop-types
-    <div {...props} className={[styles.spinner, props.className].join(' ')}>
+    <div
+      {...props}
+      data-testid="spinner"
+      // eslint-disable-next-line react/prop-types
+      className={[styles.spinner, props.className].join(' ')}
+    >
       <div />
       <div />
       <div />
