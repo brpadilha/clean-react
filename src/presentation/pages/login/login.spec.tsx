@@ -1,5 +1,5 @@
 import React from 'react'
-import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react'
+import { cleanup, fireEvent, render, RenderResult, waitFor } from '@testing-library/react'
 import faker from 'faker'
 import Login from './login'
 import { ValidationStub, AuthenticationSpy } from '@/presentation/test'
@@ -141,7 +141,7 @@ describe('Login Component', () => {
     expect(authenticationSpy.callsCount).toBe(0)
   })
 
-  test('Should present error if authentication fails', () => {
+  test('Should present error if authentication fails', async () => {
     const { sut, authenticationSpy } = makeSut()
     const error = new InvalidCredentialsError()
     jest.spyOn(authenticationSpy, 'auth').mockReturnValueOnce(Promise.reject(error))
@@ -150,7 +150,7 @@ describe('Login Component', () => {
     // DOC
     // waitFor -> Wait the dom to be hendered, and errorWrap already is presented
     // need that because our authentication is async
-    (() => errorWrap)
+    await waitFor(() => errorWrap)
     const mainError = sut.getByTestId('main-error')
     expect(mainError.textContent).toBe(error.message)
     expect(errorWrap.childElementCount).toBe(1)
