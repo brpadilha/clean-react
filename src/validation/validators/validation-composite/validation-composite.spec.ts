@@ -22,7 +22,7 @@ const makeSut = (): SutTypes => {
 }
 
 describe('ValidationComposite', () => {
-  test('return error if any validation fails', () => {
+  test('should return error if any validation fails', () => {
     const { sut, fieldValidationSpy } = makeSut()
 
     fieldValidationSpy.forEach(fieldValidationSpy => {
@@ -31,5 +31,12 @@ describe('ValidationComposite', () => {
 
     const error = sut.validate('any_field', 'any_value')
     expect(error).toBe('first_error_message')
+  })
+
+  test('should return falsy if validation dont fails', () => {
+    const { sut } = makeSut()
+
+    const error = sut.validate('any_field', 'any_value')
+    expect(error).toBeFalsy()
   })
 })
