@@ -1,5 +1,5 @@
 [![Build Status](https://app.travis-ci.com/brpadilha/clean-react.svg?branch=main)](https://app.travis-ci.com/brpadilha/clean-react)
-
+[![Coverage Status](https://coveralls.io/repos/github/brpadilha/clean-react/badge.svg?branch=main)](https://coveralls.io/github/brpadilha/clean-react?branch=main)
 # This project has the objective of training React + Typescript with clean architecture and clean code.
 
 ## Principles
