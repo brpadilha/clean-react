@@ -12,11 +12,11 @@ import { Router } from 'react-router-dom'
 type SutTypes = {
   sut: RenderResult
   authenticationSpy: AuthenticationSpy
-};
+}
 
 type SutParams = {
   validationError: string
-};
+}
 const history = createMemoryHistory({ initialEntries: ['/login'] })
 const makeSut = (params?: SutParams): SutTypes => {
   const validationStub = new ValidationStub()
