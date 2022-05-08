@@ -4,15 +4,20 @@ import React, { useEffect, useState } from 'react'
 import styles from './login-styles.scss'
 import Context from '@/presentation/context/form/form-context'
 import { Validation } from '@/presentation/protocols/validation'
-import { Authentication } from '@/domain/usecases'
+import { Authentication, SaveAccessToken } from '@/domain/usecases'
 import { Link, useHistory } from 'react-router-dom'
 
 type LoginProps = {
   validation: Validation
   authentication: Authentication
+  saveAccessToken: SaveAccessToken
 }
 
-const Login: React.FC<LoginProps> = ({ validation, authentication }: LoginProps) => {
+const Login: React.FC<LoginProps> = ({
+  validation,
+  authentication,
+  saveAccessToken
+}: LoginProps) => {
   const history = useHistory()
 
   const [state, setState] = useState({
@@ -33,7 +38,9 @@ const Login: React.FC<LoginProps> = ({ validation, authentication }: LoginProps)
     })
   }, [state.email, state.password])
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault()
     try {
       if (state.isLoading || state.emailError || state.passwordError) {
@@ -47,7 +54,7 @@ const Login: React.FC<LoginProps> = ({ validation, authentication }: LoginProps)
         email: state.email,
         password: state.password
       })
-      localStorage.setItem('accessToken', acount.accessToken)
+      await saveAccessToken.save(acount.accessToken)
       history.replace('/')
     } catch (error) {
       setState({
