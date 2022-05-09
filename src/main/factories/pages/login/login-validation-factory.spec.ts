@@ -1,11 +1,12 @@
-import { MakeLoginValidation } from './login-validation-factory'
+import { makeLoginValidation } from './login-validation-factory'
 import {
   ValidationBuilder,
   ValidationComposite
 } from '@/validation/validators'
+
 describe('LoginValidationFactory', () => {
   test('should make ValidationComposit with correct validations', () => {
-    const composite = MakeLoginValidation()
+    const composite = makeLoginValidation()
 
     expect(composite).toEqual(
       ValidationComposite.build([
